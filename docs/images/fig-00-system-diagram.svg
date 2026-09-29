@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="1200" height="440"
+     font-family="'HarmonyOS Sans SC','Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif"
+     role="img" aria-label="相干光通信测试系统框图">
+  <title>相干光通信测试系统框图</title>
+  <desc>AWG 四通道驱动 IQ 调制器，经待测链路到相干接收机，四通道接入示波器，再由网络送至 SuperOMA 完成 DSP 解调。</desc>
+
+  <!-- Arrowheads are drawn as paths rather than <marker>: markers are outside
+       SVG Tiny, so anything rendered by Qt (or an older converter) silently
+       loses every arrow. Explicit triangles survive any renderer. -->
+  <style>
+    .blk   { fill:#f7f9fb; stroke:#9aa7b4; stroke-width:1.6; }
+    .blk-a { fill:#e9f6f8; stroke:#0f8b9e; stroke-width:2; }
+    .sub   { fill:#fdfdfe; stroke:#b3bcc6; stroke-width:1.4; }
+    .name  { fill:#1f2933; font-size:20px; font-weight:600; text-anchor:middle; }
+    .name-a{ fill:#0b6d7d; font-size:20px; font-weight:600; text-anchor:middle; }
+    .en    { fill:#6b7785; font-size:13px; text-anchor:middle; letter-spacing:.3px; }
+    .tag   { fill:#6b7785; font-size:13px; text-anchor:middle; }
+    .el    { stroke:#2f6fb0; stroke-width:2; fill:none; }
+    .op    { stroke:#d98b28; stroke-width:2.4; fill:none; }
+    .net   { stroke:#7b8794; stroke-width:2; fill:none; stroke-dasharray:7 4; }
+    .port  { stroke:#2f6fb0; stroke-width:2.6; }
+    .a-el  { fill:#2f6fb0; }
+    .a-op  { fill:#d98b28; }
+    .a-net { fill:#7b8794; }
+    .lgd   { fill:#4a5560; font-size:14px; }
+  </style>
+
+  <!-- the host drives both ends of the bench -->
+  <path class="net" d="M1100 120 V68 H100 V110"/>
+  <path class="a-net" d="M96 110 L100 120 L104 110 z"/>
+  <text class="tag" x="600" y="58">同一软件同时控制发送与接收</text>
+
+  <!-- ===================== transmit ===================== -->
+
+  <rect class="blk" x="30" y="120" width="140" height="92" rx="8"/>
+  <text class="name" x="100" y="160">AWG</text>
+  <text class="en"   x="100" y="182">任意波形发生器</text>
+
+  <g class="port">
+    <path d="M170 141 h8"/><path d="M170 157 h8"/><path d="M170 173 h8"/><path d="M170 189 h8"/>
+  </g>
+  <g class="el">
+    <path d="M178 141 H221"/><path d="M178 157 H221"/><path d="M178 173 H221"/><path d="M178 189 H221"/>
+  </g>
+  <g class="a-el">
+    <path d="M221 137 L230 141 L221 145 z"/><path d="M221 153 L230 157 L221 161 z"/>
+    <path d="M221 169 L230 173 L221 177 z"/><path d="M221 185 L230 189 L221 193 z"/>
+  </g>
+  <text class="tag" x="203" y="112">XI / XQ / YI / YQ</text>
+
+  <rect class="blk" x="230" y="120" width="140" height="92" rx="8"/>
+  <text class="name" x="300" y="160">IQ 调制器</text>
+  <text class="en"   x="300" y="182">IQ Modulator</text>
+
+  <rect class="sub" x="245" y="292" width="110" height="58" rx="7"/>
+  <text class="name" x="300" y="317" style="font-size:16px">信号激光器</text>
+  <text class="en"   x="300" y="336" style="font-size:12px">TX Laser</text>
+  <path class="op" d="M300 292 V222"/>
+  <path class="a-op" d="M295 222 L300 212 L305 222 z"/>
+
+  <path class="op" d="M370 166 H421"/>
+  <path class="a-op" d="M421 161 L430 166 L421 171 z"/>
+
+  <!-- ===================== link under test ===================== -->
+
+  <rect class="blk" x="430" y="120" width="140" height="92" rx="8"/>
+  <!-- A ring of coiled fibre, as a mark at the top of the block rather than as
+       something threaded onto the fibre line. Two earlier attempts put it on
+       the line through the middle: that forced the two labels down to make room
+       and left this block's text sitting 30px below every other block's, which
+       is plainly visible along a row of otherwise aligned captions. The line
+       now stops at the block edge like every other block's does, and the
+       labels sit on the shared baselines. -->
+  <g fill="none" stroke="#d98b28" stroke-width="2">
+    <ellipse cx="500" cy="134" rx="19" ry="7.5"/>
+    <ellipse cx="500" cy="134" rx="7" ry="2.8"/>
+  </g>
+  <g fill="none" stroke="#d98b28" stroke-width="1.2" opacity=".75">
+    <ellipse cx="500" cy="134" rx="15" ry="5.9"/>
+    <ellipse cx="500" cy="134" rx="11" ry="4.3"/>
+  </g>
+  <text class="name" x="500" y="160">待测链路</text>
+  <text class="en"   x="500" y="182">Link Under Test</text>
+
+  <path class="op" d="M570 166 H621"/>
+  <path class="a-op" d="M621 161 L630 166 L621 171 z"/>
+
+  <!-- ===================== receive ===================== -->
+
+  <rect class="blk" x="630" y="120" width="140" height="92" rx="8"/>
+  <text class="name" x="700" y="160">相干接收机</text>
+  <text class="en"   x="700" y="182">Coherent Receiver</text>
+
+  <rect class="sub" x="645" y="292" width="110" height="58" rx="7"/>
+  <text class="name" x="700" y="317" style="font-size:16px">本振激光器</text>
+  <text class="en"   x="700" y="336" style="font-size:12px">LO Laser</text>
+  <path class="op" d="M700 292 V222"/>
+  <path class="a-op" d="M695 222 L700 212 L705 222 z"/>
+
+  <g class="port">
+    <path d="M770 141 h8"/><path d="M770 157 h8"/><path d="M770 173 h8"/><path d="M770 189 h8"/>
+  </g>
+  <g class="el">
+    <path d="M778 141 H821"/><path d="M778 157 H821"/><path d="M778 173 H821"/><path d="M778 189 H821"/>
+  </g>
+  <g class="a-el">
+    <path d="M821 137 L830 141 L821 145 z"/><path d="M821 153 L830 157 L821 161 z"/>
+    <path d="M821 169 L830 173 L821 177 z"/><path d="M821 185 L830 189 L821 193 z"/>
+  </g>
+  <text class="tag" x="803" y="112">XI / XQ / YI / YQ</text>
+
+  <rect class="blk" x="830" y="120" width="140" height="92" rx="8"/>
+  <text class="name" x="900" y="160">示波器</text>
+  <text class="en"   x="900" y="182">Oscilloscope</text>
+
+  <path class="net" d="M970 166 H1021"/>
+  <path class="a-net" d="M1021 161 L1030 166 L1021 171 z"/>
+  <text class="tag" x="1000" y="150">LAN</text>
+
+  <!-- the product -->
+  <rect class="blk-a" x="1030" y="120" width="140" height="92" rx="8"/>
+  <text class="name-a" x="1100" y="157">SuperOMA</text>
+  <text class="en" x="1100" y="177" style="fill:#0b6d7d">DSP 解调与分析</text>
+  <text class="en" x="1100" y="196" style="font-size:11px">BER / SNR / EVM</text>
+
+  <!-- ===================== legend ===================== -->
+  <g transform="translate(30,400)">
+    <path class="el"  d="M0 -5 H34"/>
+    <text class="lgd" x="44" y="0">电信号</text>
+    <path class="op"  d="M112 -5 H146"/>
+    <text class="lgd" x="156" y="0">光纤</text>
+    <path class="net" d="M210 -5 H244"/>
+    <text class="lgd" x="254" y="0">网络连接</text>
+  </g>
+</svg>
